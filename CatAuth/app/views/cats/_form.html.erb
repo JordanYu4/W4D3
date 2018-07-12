@@ -3,7 +3,7 @@
 
 <form action="<%= action %>" method="post">
   <input type="hidden" name="_method" value="<%= method %>">
-
+  
   <label for="cat_name">Name</label>
   <input
     type="text"
@@ -53,6 +53,7 @@
     <textarea name="cat[description]"><%= cat.description %></textarea>
   </label>
 
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <% submit_text = (cat.persisted? ? 'Update' : 'Create') + ' cat!' %>
   <input type="submit" value="<%= submit_text %>">
 </form>

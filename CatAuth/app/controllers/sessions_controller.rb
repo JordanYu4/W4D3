@@ -5,10 +5,10 @@ class SessionsController < ApplicationController
   end
   
   def create
+    before_action :already_logged_in
     @user = User.find_by_credentials(params[:user][:user_name], params[:user][:password])
-    debugger
     if @user
-      # login(@user)
+      login(@user)
       redirect_to cats_url
     else
       flash.now[:errors] = ['Invalid username and password']
@@ -16,4 +16,8 @@ class SessionsController < ApplicationController
     end
   end
   
+  def destroy
+    logout
+    redirect_to new_session_url
+  end
 end

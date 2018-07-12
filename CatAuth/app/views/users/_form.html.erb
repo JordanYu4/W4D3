@@ -1,7 +1,7 @@
 <% action = (action == :login ? session_url : users_url) %>
 
 <form action="<%= action %>" method="post">
-
+  
   <label for="user_name">Username</label>
   <input
     type="text"
@@ -16,6 +16,7 @@
     id="user_password"
     value="<%= user.password %>">
 
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <% submit_text = (action == :login ? 'Log in' : 'Create') + ' user!' %>
   <input type="submit" value="<%= submit_text %>">
 </form>
